@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.swp
+*.swo
+*.DS_Store
+*.egg-info/
+.eggs/
+*.log
+
+# Virtual Environment
+py_sentiment_analysis_reviews_env/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Model Artifacts
+models/distilbert_fine_tuned/
+models/results/
+
+# Data Files
+data/processed_data.pkl
+data/*.csv
+data/*.json
+
+# Logs
+*.log
+*.out
+*.err
+
+# Test Results
+tests/.pytest_cache/
+tests/__pycache__/
+
+# OS Generated Files
+Thumbs.db
+.DS_Store
+
+# IDE Configurations
+.vscode/
+.idea/
