@@ -29,8 +29,8 @@ def train_model():
     test_data = pd.read_pickle("./data/processed_test.pkl")
 
     # Use a subset of the data for faster training
-    train_data = train_data.sample(frac=0.03, random_state=42).reset_index(drop=True)
-    test_data = test_data.sample(frac=0.03, random_state=42).reset_index(drop=True)
+    train_data = train_data.sample(frac=0.1, random_state=42).reset_index(drop=True)
+    test_data = test_data.sample(frac=0.1, random_state=42).reset_index(drop=True)
     
     # Convert labels to numeric (0: negative, 1: positive)
     label_map = {"negative": 0, "positive": 1}
@@ -51,7 +51,10 @@ def train_model():
         eval_strategy="epoch",
         per_device_train_batch_size=16,
         num_train_epochs=3,
-        gradient_accumulation_steps=4,
+        save_steps=500,
+        save_total_limit=2,
+        logging_dir="./logs",
+        logging_steps=100,
         fp16=True,
     )
     
@@ -64,8 +67,11 @@ def train_model():
     )
     
     trainer.train()
-    trainer.save_model("./models/distilbert_fine_tuned")
-    print("Model fine-tuned and saved.")
+
+    model.save_pretrained("./models/distilbert_fine_tuned")
+    tokenizer.save_pretrained("./models/distilbert_fine_tuned")
+
+    print("Model and tokenizer saved successfully.")
 
 if __name__ == "__main__":
     train_model()
