@@ -21,9 +21,8 @@ models/distilbert_fine_tuned/
 models/results/
 
 # Data Files
-data/processed_data.pkl
-data/*.csv
-data/*.json
+data/*.pkl
+data/*.txt
 
 # Logs
 *.log
@@ -40,4 +39,3 @@ Thumbs.db
 
 # IDE Configurations
 .vscode/
-.idea/
