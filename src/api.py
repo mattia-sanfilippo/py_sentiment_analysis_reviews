@@ -12,12 +12,10 @@ model = AutoModelForSequenceClassification.from_pretrained(model_path)
 sentiment_pipeline = pipeline("text-classification", model=model, tokenizer=tokenizer)
 
 # Define label mapping
-label_map = {
-    "LABEL_0": "negative",
-    "LABEL_1": "positive"
-}
+label_map = {"LABEL_0": "negative", "LABEL_1": "positive"}
 
-@app.route('/analyze', methods=['POST'])
+
+@app.route("/analyze", methods=["POST"])
 def analyze():
     data = request.json
     text = data.get("review")
@@ -32,6 +30,7 @@ def analyze():
         result["label"] = label_map[result["label"]]
 
     return jsonify(results)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

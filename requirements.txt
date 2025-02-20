@@ -6,3 +6,5 @@ flask
 accelerate
 notebook
 matplotlib
+flake8
+pre-commit
