@@ -17,6 +17,15 @@ label_map = {"LABEL_0": "negative", "LABEL_1": "positive"}
 
 @app.route("/analyze", methods=["POST"])
 def analyze():
+    """
+    Analyze the sentiment of a given review.
+
+    Expects a JSON payload with a "review" field containing the text to analyze.
+    Returns a JSON response with the sentiment analysis results.
+
+    Returns:
+        JSON response containing the sentiment analysis results or an error message.
+    """
     data = request.json
     text = data.get("review")
     if not text:

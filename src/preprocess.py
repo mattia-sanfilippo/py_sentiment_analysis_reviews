@@ -2,7 +2,16 @@ import pandas as pd
 
 
 def load_fasttext_data(file_path):
-    """Load FastText sentiment dataset and split labels from reviews."""
+    """
+    Load FastText sentiment dataset and split labels from reviews.
+
+    Args:
+        file_path (str): Path to the FastText dataset file.
+
+    Returns:
+        pd.DataFrame: DataFrame containing the reviews and their corresponding sentiments.
+    """  # noqa E501
+
     reviews = []
     sentiments = []
 
@@ -16,7 +25,16 @@ def load_fasttext_data(file_path):
 
 
 def preprocess_data(df):
-    """Map labels and clean text data."""
+    """
+    Map labels and clean text data.
+
+    Args:
+        df (pd.DataFrame): DataFrame containing the reviews and their corresponding sentiments.
+
+    Returns:
+        pd.DataFrame: DataFrame with cleaned reviews and mapped sentiments.
+    """  # noqa E501
+
     # Map numeric labels to textual sentiments
     df["sentiment"] = df["sentiment"].apply(
         lambda x: "positive" if x == 2 else "negative"

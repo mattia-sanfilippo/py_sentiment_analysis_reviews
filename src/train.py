@@ -10,6 +10,16 @@ import pandas as pd
 
 
 class AmazonReviewDataset(Dataset):
+    """
+    Custom Dataset class for Amazon reviews.
+
+    Args:
+        texts (list): List of review texts.
+        labels (list): List of corresponding labels.
+        tokenizer (transformers.PreTrainedTokenizer): Tokenizer to use for encoding the texts.
+        max_length (int, optional): Maximum length of the tokenized sequences. Defaults to 128.
+    """  # noqa E501
+
     def __init__(self, texts, labels, tokenizer, max_length=128):
         self.texts = texts
         self.labels = labels
@@ -17,9 +27,19 @@ class AmazonReviewDataset(Dataset):
         self.max_length = max_length
 
     def __len__(self):
+        """Return the number of samples in the dataset."""
         return len(self.texts)
 
     def __getitem__(self, idx):
+        """
+        Get a sample from the dataset.
+
+        Args:
+            idx (int): Index of the sample to retrieve.
+
+        Returns:
+            dict: Dictionary containing the tokenized text and the corresponding label.
+        """
         text = self.texts[idx]
         label = self.labels[idx]
         encoding = self.tokenizer(
@@ -37,6 +57,13 @@ class AmazonReviewDataset(Dataset):
 
 
 def train_model():
+    """
+    Train the sentiment analysis model.
+
+    Loads preprocessed training and test data, initializes the tokenizer and model,
+    prepares the datasets, sets up training arguments, and trains the model.
+    Saves the trained model and tokenizer to disk.
+    """
     # Load preprocessed data
     train_data = pd.read_pickle("./data/processed_train.pkl")
     test_data = pd.read_pickle("./data/processed_test.pkl")
