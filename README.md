@@ -48,6 +48,14 @@ source py_sentiment_analysis_reviews_env/bin/activate # Mac OS / Linux
 pip install -r requirements.txt
 ```
 
+### Download the dataset
+
+Download the Amazon reviews dataset from [Kaggle](https://www.kaggle.com/datasets/bittlingmayer/amazonreviews), extract it and save it in the `data/` directory.
+You should have the following files:
+
+- `./data/train.ft.txt`
+- `./data/test.ft.txt`
+
 ## Data preprocessing
 
 Before training the model, preprocess the dataset by running the following command:
